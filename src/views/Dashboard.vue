@@ -1,14 +1,20 @@
 <template>
   <div class="dashboard">
     <h1>Ruta protegida</h1>
-    <p>{{token}}</p>
+    <p>{{user}}</p>
   </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 export default {
+  created(){
+    this.dashboard(this.token)
+  },
   computed: {
-    ...mapState(['token'])
+    ...mapState(['token', 'user'])
+  },
+  methods: {
+    ...mapActions(['dashboard'])
   }
 }
 </script>

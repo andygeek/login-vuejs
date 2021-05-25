@@ -5,11 +5,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: null
+    token: null,
+    user: {
+      name: ''
+    }
   },
   mutations: {
-    setToken(state, payload){
+    setToken(state, payload) {
       state.token = payload
+    },
+    setUser(state, payload) {
+      state.user.name = payload.name,
+      state.user.email = payload.email
     }
   },
   actions: {
@@ -25,6 +32,21 @@ export default new Vuex.Store({
         const userDB = await res.json()
         commit('setToken', userDB.data.token)
         localStorage.setItem('token', userDB.data.token)
+      } catch (error) {
+        console.log('Error: ', error)
+      }
+    },
+    async dashboard({commit}, auth_token){
+      try {
+        const res = await fetch('http://localhost:8005/api/dashboard',  {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token': auth_token
+          },
+        })
+        const userDB = await res.json()
+        commit('setUser', {name: userDB.data.user.name})
       } catch (error) {
         console.log('Error: ', error)
       }

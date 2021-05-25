@@ -26,6 +26,7 @@ const router = new VueRouter({
   routes
 })
 
+// Verificando si hay token en el estado
 router.beforeEach((to, from, next)=>{
   const protectedRoute = to.matched.some(record => record.meta.requireAuth)
   if (protectedRoute && store.state.token === null) {
