@@ -17,6 +17,10 @@ export default new Vuex.Store({
     setUser(state, payload) {
       state.user.name = payload.name,
       state.user.email = payload.email
+    },
+    logout() {
+      localStorage.removeItem('token')
+      location.reload()
     }
   },
   actions: {
@@ -57,6 +61,9 @@ export default new Vuex.Store({
       } else {
         commit('setToken', null)
       }
+    },
+    logout ({ commit }) {
+      commit('logout')
     }
   },
   modules: {

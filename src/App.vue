@@ -3,6 +3,9 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/dashboard">Dashboard</router-link>
+      <button type="button" @click="logout">
+        Logout
+      </button>
     </div>
     <router-view/>
   </div>
@@ -11,7 +14,7 @@
 import { mapActions } from 'vuex'
 export default {
   methods: {
-    ...mapActions(['getToken'])
+    ...mapActions(['getToken', 'logout']),
   },
   created(){
     this.getToken()
