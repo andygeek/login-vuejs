@@ -40,6 +40,21 @@ export default new Vuex.Store({
         console.log('Error: ', error)
       }
     },
+    async register( user ) {
+      try {
+        const res = await fetch('http://localhost:8005/api/user/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },  
+          body: JSON.stringify(user)
+        })
+        const userDB = await res.json()
+        consol.log(userDB)
+      } catch (error) {
+        console.log('Error: ', error)
+      }
+    },
     async dashboard({commit}, auth_token){
       try {
         const res = await fetch('http://localhost:8005/api/dashboard',  {
