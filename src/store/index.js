@@ -26,7 +26,7 @@ export default new Vuex.Store({
   actions: {
     async login({ commit }, user) {
       try {
-        const res = await fetch('http://localhost:8005/api/user/login', {
+        const res = await fetch(process.env.VUE_APP_BACKBASE + '/user/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export default new Vuex.Store({
     },
     async register( user ) {
       try {
-        const res = await fetch('http://localhost:8005/api/user/register', {
+        const res = await fetch(process.env.VUE_APP_BACKBASE + '/user/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ export default new Vuex.Store({
     },
     async dashboard({commit}, auth_token){
       try {
-        const res = await fetch('http://localhost:8005/api/dashboard',  {
+        const res = await fetch(process.env.VUE_APP_BACKBASE + '/dashboard',  {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
